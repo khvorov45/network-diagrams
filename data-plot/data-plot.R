@@ -36,12 +36,11 @@ victoria_map %>%
   ggplot() +
   theme_bw() +
   theme(panel.grid = element_blank()) +
-  geom_sf(size = 0.1, col = "gray70", fill = "gray95") +
-  coord_sf(xlim = c(143.5, 147), ylim = c(-39, -36)) +
-  scale_alpha_continuous("Connections", range = c(0.2, 1)) +
   scale_size_continuous("Individuals") +
   xlab("Longitude") +
   ylab("Lattitude") +
+  geom_sf(size = 0.1, col = "gray70", fill = "gray95") +
+  coord_sf(xlim = c(143.5, 147), ylim = c(-39, -36)) +
   geom_point(
     data = cluster,
     mapping = aes(
@@ -50,5 +49,5 @@ victoria_map %>%
     shape = 1
   ) +
   geom_path(
-    data = conns, mapping = aes(x = long, y = lat, group = "id", alpha = n_conn)
+    data = conns, mapping = aes(x = long, y = lat, group = "id")
   )
