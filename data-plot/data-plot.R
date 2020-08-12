@@ -28,19 +28,6 @@ conns <- indiv %>%
   select(id, cluster) %>%
   inner_join(cluster, by = "cluster")
 
-cluster %>%
-  ggplot(aes(long, lat)) +
-  ggdark::dark_theme_bw(verbose = FALSE) +
-  scale_alpha_continuous("Connections", range = c(0.2, 1)) +
-  scale_size_continuous("Individuals") +
-  geom_point(
-    aes(size = n_indiv, stroke = remap_range(n_conn, 0.2, 3)),
-    shape = 1
-  ) +
-  geom_path(
-    data = conns, mapping = aes(group = "id", alpha = n_conn)
-  )
-
 victoria_map <- geojsonsf::geojson_sf(
   "https://data.gov.au/geoserver/vic-suburb-locality-boundaries-psma-administrative-boundaries/wfs?request=GetFeature&typeName=ckan_af33dd8c_0534_4e18_9245_fc64440f742e&outputFormat=json"
 )
